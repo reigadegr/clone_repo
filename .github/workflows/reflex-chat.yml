@@ -37,8 +37,8 @@ jobs:
         run: |
           cd thin
           mkdir ../fulloutput
-          tree > ../fulloutput/tree.txt
-          zip -9 -rq mm.zip .
+          tree | tee ../fulloutput/tree.txt
+          zip -1 -rq mm.zip .
           mv mm.zip ../fulloutput
           #
           # tar -zcf android15-6.6-full.tar.gz $(pwd)
