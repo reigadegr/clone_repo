@@ -1,0 +1,33 @@
+name: reflex-chat
+on:
+  push:
+    branches: ['main']
+jobs:
+  build_static_resources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup repo
+        run: |
+          sudo apt install repo
+
+      - name: Setup Kernel Source
+          mkdir -p thin && cd thin
+          repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6
+      - name: Pack artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: android15-6.6-thin
+          compression-level: 9
+          path: thin
+
+      - name: Setup Kernel Source
+          cd thin
+          repo sync -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
+
+      - name: Pack artifacts2
+        uses: actions/upload-artifact@v4
+        with:
+          name: android15-6.6-full
+          compression-level: 9
+          path: thin
