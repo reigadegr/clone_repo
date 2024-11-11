@@ -37,6 +37,7 @@ jobs:
         run: |
           cd thin
           mkdir ../fulloutput
+          tree -a > ../fulloutput/tree.txt
           dirs=$(ls -a)
           for i in $dirs; do
             if [ -z "$(echo $i | sed 's/.//g')" ]; then
