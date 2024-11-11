@@ -30,6 +30,11 @@ jobs:
           mv repo .repo
           repo sync -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
 
+      - name: Build
+        run: |
+          cd thin
+          tools/bazel run --config=fast --config=stamp --lto=thin //common:kernel_aarch64_dist -- --dist_dir=dist
+          
       - name: Pack artifacts2
         uses: actions/upload-artifact@v4
         with:
