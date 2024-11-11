@@ -44,6 +44,7 @@ jobs:
             fi
             tar -zcf dir_$i.tar.gz $i
             mv dir_$i.tar.gz ../fulloutput
+            echo "$i 打包完毕"
           done
           # tar -zcf android15-6.6-full.tar.gz $(pwd)
           # mv android15-6.6-full.tar.gz ../fulloutput
