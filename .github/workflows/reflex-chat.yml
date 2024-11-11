@@ -36,9 +36,17 @@ jobs:
       - name: Pack up to gzip
         run: |
           cd thin
-          tar -zcf android15-6.6-full.tar.gz $(pwd)
           mkdir ../fulloutput
-          mv android15-6.6-full.tar.gz ../fulloutput
+          dirs=$(ls -a)
+          for i in $dirs; do
+            if [ -z "$(echo $i | sed 's/.//g')" ]; then
+              continue
+            fi
+            tar -zcf dir_$i.tar.gz $i
+            mv dir_$i.tar.gz ../fulloutput
+          done
+          # tar -zcf android15-6.6-full.tar.gz $(pwd)
+          # mv android15-6.6-full.tar.gz ../fulloutput
           
       - name: Build
         run: |
