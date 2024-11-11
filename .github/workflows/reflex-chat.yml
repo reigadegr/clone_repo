@@ -15,6 +15,7 @@ jobs:
         run: |
           mkdir -p thin && cd thin
           repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6
+          ls -al
           mv .repo repo
 
       - name: Pack artifacts
