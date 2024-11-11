@@ -15,6 +15,7 @@ jobs:
         run: |
           mkdir -p thin && cd thin
           repo init --depth 1 -u https://android.googlesource.com/kernel/manifest -b common-android15-6.6
+          echo 666 > flag
 
       - name: Pack artifacts
         uses: actions/upload-artifact@v4
