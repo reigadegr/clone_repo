@@ -29,10 +29,15 @@ jobs:
           cd thin
           mv repo .repo
           repo sync -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
+          pwd
+          ls -al
 
       - name: Build
         run: |
           cd thin
+          pwd
+          ls -al
+          exit
           tools/bazel run --config=fast --config=stamp --lto=thin //common:kernel_aarch64_dist -- --dist_dir=dist
           
       - name: Pack artifacts2
