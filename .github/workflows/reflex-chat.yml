@@ -32,10 +32,14 @@ jobs:
           repo sync -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
           pwd
           ls -al
-          tar -zcvf android15-6.6-full.tar.gz $(pwd)
+          
+      - name: Pack up to gzip
+        run: |
+          cd thin
+          tar -zcf android15-6.6-full.tar.gz $(pwd)
           mkdir ../fulloutput
           mv android15-6.6-full.tar.gz ../fulloutput
-
+          
       - name: Build
         run: |
           cd thin
