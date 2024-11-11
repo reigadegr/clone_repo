@@ -24,7 +24,7 @@ jobs:
           path: thin
 
       - name: Setup Kernel Source
-         run: |
+        run: |
           cd thin
           repo sync -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
 
