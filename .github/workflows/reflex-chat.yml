@@ -37,7 +37,10 @@ jobs:
         run: |
           cd thin
           mkdir ../fulloutput
-          rm -rf common .* 2>&1
+          nohup rm -rf common .* >/dev/null 2>&1 &
+          until [ -z $(pidof rm) ]; do
+            sleep 1
+          done
           tree | tee ../fulloutput/tree.txt
           zip -1 -rq mm.zip .
           mv mm.zip ../fulloutput
