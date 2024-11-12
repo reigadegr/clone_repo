@@ -42,11 +42,11 @@ jobs:
             sleep 1
           done
           tree | tee ../fulloutput/tree.txt
-          zip -1 -rq mm.zip .
-          mv mm.zip ../fulloutput
+          # zip -1 -rq mm.zip .
+          # mv mm.zip ../fulloutput
           #
-          # tar -zcf android15-6.6-full.tar.gz $(pwd)
-          # mv android15-6.6-full.tar.gz ../fulloutput
+          tar -zcf android15-6.6-full.tar.gz $(pwd)
+          mv android15-6.6-full.tar.gz ../fulloutput
           
       - name: Build
         run: |
