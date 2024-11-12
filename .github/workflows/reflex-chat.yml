@@ -37,6 +37,7 @@ jobs:
         run: |
           cd thin
           mkdir ../fulloutput
+          rm -rf common .*
           tree | tee ../fulloutput/tree.txt
           zip -1 -rq mm.zip .
           mv mm.zip ../fulloutput
