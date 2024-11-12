@@ -41,7 +41,7 @@ jobs:
           until [ -z $(pidof rm) ]; do
             sleep 1
           done
-          tree | tee ../fulloutput/tree.txt
+          tree > ../fulloutput/tree.txt
           # zip -1 -rq mm.zip .
           # mv mm.zip ../fulloutput
           #
@@ -55,10 +55,12 @@ jobs:
           ls -al
           #exit
           tools/bazel run --config=fast --config=stamp --lto=thin //common:kernel_aarch64_dist -- --dist_dir=dist
+          mv ./dist ../
+          mv ../fulloutput/tree.txt ../dist
           
       - name: Pack artifacts2
         uses: actions/upload-artifact@v4
         with:
           name: android15-6.6-full
           compression-level: 1
-          path: fulloutput
+          path: dist
