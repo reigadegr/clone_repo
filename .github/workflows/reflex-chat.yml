@@ -37,7 +37,7 @@ jobs:
         run: |
           cd thin
           mkdir ../fulloutput
-          nohup rm -rf common .* >/dev/null 2>&1 &
+          # nohup rm -rf common .* >/dev/null 2>&1 &
           until [ -z $(pidof rm) ]; do
             sleep 1
           done
@@ -45,15 +45,15 @@ jobs:
           # zip -1 -rq mm.zip .
           # mv mm.zip ../fulloutput
           #
-          tar -zcf android15-6.6-full.tar.gz $(pwd)
-          mv android15-6.6-full.tar.gz ../fulloutput
+          #tar -zcf android15-6.6-full.tar.gz $(pwd)
+          #mv android15-6.6-full.tar.gz ../fulloutput
           
       - name: Build
         run: |
           cd thin
           pwd
           ls -al
-          exit
+          #exit
           tools/bazel run --config=fast --config=stamp --lto=thin //common:kernel_aarch64_dist -- --dist_dir=dist
           
       - name: Pack artifacts2
